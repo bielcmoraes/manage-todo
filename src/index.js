@@ -38,7 +38,7 @@ app.post('/users', (request, response) => {
     id: uuidv4(),
     name,
     username,
-    todos: []
+    todos: [ ],
   };
   
   users.push(user);
@@ -47,13 +47,13 @@ app.post('/users', (request, response) => {
 });
 
 app.get('/todos', checksExistsUserAccount, (request, response) => {
-  const {user} = request;
+  const { user } = request;
 
   return response.json(user.todos);
 });
 
 app.post('/todos', checksExistsUserAccount, (request, response) => {
-  const {user} = require;
+  const {user} = request;
   const {title, deadline} = request.body;
 
   const todo = { 
@@ -113,7 +113,7 @@ app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
 
   user.todos.splice(todoIndex, 1);
 
-  return response.status(204);
+  return response.status(204).json();
 });
 
 module.exports = app;
